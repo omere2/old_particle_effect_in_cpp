@@ -1,0 +1,14 @@
+# Makefile for particle system.
+# Use Watcom C++'s WMAKE utility to build this.
+
+
+Target = particl4.exe
+Dependencies = particl4.obj dgfx2.obj timer.obj
+CompilerOptions = /4r /fp3 /mf /otex /zp4
+LinkerOptions = @%WATCOM%\binw\pmodew.lnk system pmodew
+
+.cpp.obj
+    wpp386 $(CompilerOptions) $<
+
+$(Target): makefile $(Dependencies)
+    wlink $(LinkerOptions) name $@ file {$(Dependencies)}
